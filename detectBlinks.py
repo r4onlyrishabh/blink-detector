@@ -10,7 +10,7 @@ import dlib
 import time
 
 frameCount = 0
-totBlinks = 0
+blinkCount = 0
 
 faceDetector = dlib.get_frontal_face_detector()
 landmarksPredictor = dlib.shape_predictor(shapePredictorPath)
@@ -55,12 +55,12 @@ while True:
 			frameCount += 1
 		else:
 			if frameCount >= EAR_CONSEC_FRAMES:
-				totBlinks += 1 
+				blinkCount += 1 
 			frameCount = 0
 
-		cv2.putText(frame, "Blinks: {}".format(totBlinks), 
+		cv2.putText(frame, "Blinks: {}".format(blinkCount), 
 		(10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-		cv2.putText(frame, "EAR: {:05.3f}".format(ear), (400, 30), 
+		cv2.putText(frame, "EAR for #{}: {:05.3f}".format(i+1, ear), (350, 30+20*i), 
 			cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 	
 	cv2.imshow("Video output", frame)
