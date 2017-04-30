@@ -1,3 +1,5 @@
+from scipy.spatial import distance
+
 def calculateEAR(P):
 	verticalDist1 = distance.euclidean(P[1], P[5])
 	verticalDist2 = distance.euclidean(P[2], P[4])
